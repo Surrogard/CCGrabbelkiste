@@ -1,0 +1,7 @@
+rednet.open("back")
+rednet.broadcast("startInventory")
+while true do
+  senderID,message,protocol = rednet.receive()
+  print(senderID .. '-' .. message)
+end
+  

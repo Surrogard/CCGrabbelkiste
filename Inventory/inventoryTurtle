@@ -1,0 +1,52 @@
+print("InventoryClient running...")
+
+function startInventory(receiverID)
+  goBack = false
+
+  while not goBack do
+    --print("Searching chest...")
+    while not turtle.detect() and not (peripheral.getType("right") == "container_chest") do
+      --print(".")
+      turtle.forward()
+    end
+    --print("Found chest, checking inventory...")
+    if peripheral.getType("right") == "container_chest" then
+      stacks = peripheral.call("right","getAllStacks")
+      for index,stack in pairs(stacks) do
+        s = stack.basic()
+        r = {}
+        r.id = s["id"]
+        r.name = s["display_name"]
+        r.qty = s["qty"]
+        rednet.send(receiverID, r)
+      end
+      if not turtle.detect() then 
+        --print("Check finished, going forward one step...")
+        turtle.forward()
+      end
+    end
+    if turtle.detect() then
+      goBack = true
+    end
+  end
+  --rednet.send(receiverID,"inventoryFinished")
+  --print("Going back...")
+  turtle.turnRight()
+  turtle.turnRight()
+  while not turtle.detect() do
+    turtle.forward()
+  end
+  turtle.turnRight()
+  turtle.turnRight()
+  rednet.send(receiverID, "inventoryFinished")
+end
+
+rednet.open("left")
+
+while true do
+  senderID,message,protocol = rednet.receive()
+  if message == "startInventory" then
+    --print("Got start message")
+    startInventory(senderID)
+  end
+end

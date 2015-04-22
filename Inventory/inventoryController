@@ -1,0 +1,67 @@
+local inventory = {}
+
+function mprint(m,s)
+  x,y = m.getCursorPos()
+  m.write(s)
+  m.setCursorPos(1,y+1)
+end
+
+function display()
+  
+    local m = peripheral.wrap("top")
+    local inventoryFinished = false
+    m.setTextScale(0.5)
+    m.clear()
+    shell.run("monitor","top","clear")
+    term.redirect(m)
+    print("Inventory")
+    while not inventoryFinished do
+      senderID,message,protocol = rednet.receive()
+      if message == "inventoryFinished" then
+        inventoryFinished = true
+      else
+        if inventory[message.id] == nil then
+          inventory[message.id] = message
+        else
+          inventory[message.id].qty = inventory[message.id].qty + message.qty
+        end
+      end
+    end
+    for k,v in pairs(inventory) do
+      print(v.name .. ': ' .. v.qty)
+    end
+end
+
+function controller()
+local m = peripheral.wrap("left")
+
+while true do
+  m.clear()
+  m.setCursorPos(2, 2)
+  m.write("Start")
+
+  local side = ""
+  while not (side == "left") do
+    event,side,x,y = os.pullEvent("monitor_touch")
+  end
+  m.clear()
+  m.setCursorPos(1,1)
+  m.write("Starting")
+  m.setCursorPos(1,2)
+  rednet.broadcast("startInventory")
+  display()
+  --message = ""
+  --numberOfMessages = 0
+  --while not (message == "inventoryFinished") do
+  --  senderID,message,protocol = rednet.receive()
+  --  m.clearLine()
+  --  m.setCursorPos(1,2)
+  --  numberOfMessages = numberOfMessages + 1
+  --  m.write(numberOfMessages)
+  --end
+end
+end
+
+rednet.open("back")
+--parallel.waitForAll(controller,display)
+controller()

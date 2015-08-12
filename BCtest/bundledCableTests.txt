@@ -22,3 +22,12 @@ HomePage Tutorials:
 Bundled Cable Wiki
  http://projectredwiki.com/wiki/Bundled_Cable
 
+Redstone (API) - Wiki
+ http://computercraft.info/wiki/index.php?title=Redstone_%28API%29
+
+using the Redstone API
+ http://www.computercraft.info/wiki/Usage_of_the_bundled_cable_using_the_Redstone_API
+
+Colors (API) - Wiki
+ http://computercraft.info/wiki/Colors_%28API%29
+

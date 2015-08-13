@@ -6,9 +6,10 @@ mon.clear()
 mon.setCursorPos(1,1)
 
 shell.run("downloads/CCGrabbelkiste/HochHaus/LichtAnz.lua")
+os.loadAPI("downloads/CCGrabbelkiste/HochHaus/LichtAnz.lua")
 
 while true do
-  ShowLichtInfos()
+  LichtAnz.ShowLichtInfos()
   os.sleep(1)
 end
 

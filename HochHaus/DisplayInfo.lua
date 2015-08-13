@@ -5,8 +5,8 @@ mon = peripheral.wrap("left")
 mon.clear()
 mon.setCursorPos(1,1)
 
-shell.run("downloads/CCGrabbelkiste/HochHaus/LichtAnz.lua")
-os.loadAPI("downloads/CCGrabbelkiste/HochHaus/LichtAnz.lua")
+shell.run("downloads/CCGrabbelkiste/HochHaus/LichtAnz")
+os.loadAPI("downloads/CCGrabbelkiste/HochHaus/LichtAnz")
 
 while true do
   LichtAnz.ShowLichtInfos()

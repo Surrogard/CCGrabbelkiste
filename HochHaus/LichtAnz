@@ -4,7 +4,7 @@ mon = peripheral.wrap("left")
 function ShowLichtCableAsBool(sText, cFarbe, xPos, yPos)
   mon.setCursorPos(xPos, yPos)
   mon.write( sText )
-  mon.write( " " )
+  mon.write( "  " )
   mon.write( colors.test(bndCableLicht, cFarbe) )
   mon.write( "  " )
 end
@@ -12,11 +12,15 @@ end
 
 function ShowLichtInfos(xPos, startYPos)
   bndCableLicht = rs.getBundledInput("bottom")
+  mon.setCursorPos(xPos, startYPos)
   mon.write( "Etagen Licht" )
-  ShowLichtCableAsBool(" 4:", colors.orange,   xPos, startYPos+1)
-  ShowLichtCableAsBool(" 3:", colors.lime,     xPos, startYPos+2)
-  ShowLichtCableAsBool(" 2:", colors.cyan,     xPos, startYPos+3)
-  ShowLichtCableAsBool(" 1:", colors.green,    xPos, startYPos+4)
+  ShowLichtCableAsBool("  4:", colors.orange,     xPos, startYPos+1)
+  ShowLichtCableAsBool("  3:", colors.lime,       xPos, startYPos+2)
+  ShowLichtCableAsBool("  2:", colors.cyan,       xPos, startYPos+3)
+  ShowLichtCableAsBool("  1:", colors.green,      xPos, startYPos+4)
+  ShowLichtCableAsBool("  0:", colors.lightBlue,  xPos, startYPos+5)
+  ShowLichtCableAsBool(" -1:", colors.gray,       xPos, startYPos+6)
+  ShowLichtCableAsBool(" -2:", colors.blue,       xPos, startYPos+7)
   os.sleep(1)
 end
  

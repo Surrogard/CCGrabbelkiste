@@ -14,7 +14,7 @@ end
 
 
 function ShowLichtInfos()
-  bndCableLicht = rs.getBundledInput("bottom")"
+  bndCableLicht = rs.getBundledInput("bottom")
   ShowLichtCableAsBool("   4:", colors.orange,   1, startYPos+1)
   ShowLichtCableAsBool("   3:", colors.lime,     1, startYPos+2)
   os.sleep(1)

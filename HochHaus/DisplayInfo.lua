@@ -9,7 +9,7 @@ shell.run("downloads/CCGrabbelkiste/HochHaus/LichtAnz")
 os.loadAPI("downloads/CCGrabbelkiste/HochHaus/LichtAnz")
 
 while true do
-  LichtAnz.ShowLichtInfos()
+  LichtAnz.ShowLichtInfos(1, 1)
   os.sleep(1)
 end
 
